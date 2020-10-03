@@ -22,6 +22,7 @@ import lombok.ToString;
 public class ClienteDTO {
     private Long id;
     private String cedula;
+    private String nombre;
     private String direccion;
     private String telefono;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")

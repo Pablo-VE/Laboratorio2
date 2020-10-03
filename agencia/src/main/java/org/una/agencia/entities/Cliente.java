@@ -51,6 +51,9 @@ public class Cliente implements Serializable{
     @Column(length = 250)
     private String direccion;
     
+    @Column(length = 100)
+    private String nombre;
+    
     @Column(length = 15)
     private String telefono;
     
