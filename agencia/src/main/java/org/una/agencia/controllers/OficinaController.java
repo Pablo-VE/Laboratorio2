@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import org.una.agencia.services.IOficinaService;
 
 @RestController
 @RequestMapping("/oficinas") 
+@Api(tags = {"Oficinas"})
 public class OficinaController {
     
     @Autowired
@@ -36,6 +39,7 @@ public class OficinaController {
    final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping("/") 
+    @ApiOperation(value = "Obtiene una lista de todas las oficinas", response = OficinaDTO.class, responseContainer = "List", tags = "Oficinas")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -46,6 +50,7 @@ public class OficinaController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene una oficina por su id", response = OficinaDTO.class, tags = "Oficinas")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(oficinaService.findById(id), HttpStatus.OK);
@@ -55,6 +60,7 @@ public class OficinaController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea una oficina", response = HttpStatus.class, tags = "Oficinas")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody OficinaDTO oficinaDTO, BindingResult bindingResult) {
