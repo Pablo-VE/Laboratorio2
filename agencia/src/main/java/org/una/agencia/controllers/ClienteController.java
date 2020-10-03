@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,8 @@ import org.una.agencia.services.IClienteService;
  */
 
 @RestController
-@RequestMapping("/clientes") 
+@RequestMapping("/clientes")
+@Api(tags = {"Clientes"})
 public class ClienteController {
     
     @Autowired
@@ -37,6 +40,7 @@ public class ClienteController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
         
     @GetMapping("/")
+    @ApiOperation(value = "Obtiene una lista de todos los clientes", response = ClienteDTO.class, responseContainer = "List", tags = "Clientes")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -47,6 +51,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene un cliente por su identificador unico", response = ClienteDTO.class, tags = "Clientes")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(clienteService.findById(id), HttpStatus.OK);
@@ -56,6 +61,7 @@ public class ClienteController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea un cliente", response = HttpStatus.class, tags = "Clientes")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody ClienteDTO clienteDTO, BindingResult bindingResult) {

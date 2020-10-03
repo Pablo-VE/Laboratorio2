@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import org.una.agencia.services.IGrupoVehiculoService;
 
 @RestController
 @RequestMapping("/gruposVehiculo") 
+@Api(tags = {"Grupos_Vehiculos"})
 public class GrupoVehiculoController {
     
     @Autowired
@@ -37,6 +40,7 @@ public class GrupoVehiculoController {
 
     
     @GetMapping("/") 
+    @ApiOperation(value = "Obtiene una lista de todos los grupos de vehiculos", response = GrupoVehiculoDTO.class, responseContainer = "List", tags = "Grupos_Vehiculos")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -47,6 +51,7 @@ public class GrupoVehiculoController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene un grupo de vehiculos por su identificador unico", response = GrupoVehiculoDTO.class, tags = "Grupos_Vehiculos")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(grupoVehiculoService.findById(id), HttpStatus.OK);
@@ -56,6 +61,7 @@ public class GrupoVehiculoController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea un grupo de vehiculos", response = HttpStatus.class, tags = "Grupos_Vehiculos")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody GrupoVehiculoDTO grupoVehiculoDTO, BindingResult bindingResult) {

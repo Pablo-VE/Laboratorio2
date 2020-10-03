@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import org.una.agencia.services.ICiudadService;
 
 @RestController
 @RequestMapping("/ciudades") 
+@Api(tags = {"Ciudades"})
 public class CiudadController {
     
     @Autowired
@@ -35,6 +38,7 @@ public class CiudadController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
     
     @GetMapping("/") 
+    @ApiOperation(value = "Obtiene una lista de todas las ciudades", response = CiudadDTO.class, responseContainer = "List", tags = "Ciudades")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -45,6 +49,7 @@ public class CiudadController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene una ciudad por su identificador unico", response = CiudadDTO.class, tags = "Ciudades")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(ciudadService.findById(id), HttpStatus.OK);
@@ -54,6 +59,7 @@ public class CiudadController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea una ciudad", response = HttpStatus.class, tags = "Ciudades")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody CiudadDTO ciudadDTO, BindingResult bindingResult) {
