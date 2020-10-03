@@ -42,5 +42,20 @@ public class AlquilerServiceImplementation implements IAlquilerService {
         alqui = alquilerRepository.save(alqui);
         return MapperUtils.DtoFromEntity(alqui, AlquilerDTO.class);
     }
+
+    @Override
+    public Optional<List<AlquilerDTO>> findByTitularTarjetaAndMatriculaVehiculo(String nombre, String matricula) {
+        return ServiceConvertionHelper.findList(alquilerRepository.findByTitularTarjetaAndMatriculaVehiculo(nombre, matricula), AlquilerDTO.class);
+    }
+
+    @Override
+    public Optional<List<AlquilerDTO>> findByCedulaClienteAndMatriculaVehiculo(String cedula, String matricula) {
+        return ServiceConvertionHelper.findList(alquilerRepository.findByCedulaClienteAndMatriculaVehiculo(cedula, matricula), AlquilerDTO.class);
+    }
+
+    @Override
+    public Optional<List<AlquilerDTO>> findByPrecioAndTipoSeguro(double precio, String nombre) {
+        return ServiceConvertionHelper.findList(alquilerRepository.findByPrecioAndTipoSeguro(precio, nombre), AlquilerDTO.class);
+    }
         
 }
