@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import org.una.agencia.services.ITarjetaCreditoService;
 
 @RestController
 @RequestMapping("/tarjetasCredito") 
+@Api(tags = {"Tarjetas_Credito"})
 public class TarjetaCreditoController {
     
     @Autowired
@@ -37,6 +40,7 @@ public class TarjetaCreditoController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping("/")  
+    @ApiOperation(value = "Obtiene una lista de todas las oficinas", response = TarjetaCreditoDTO.class, responseContainer = "List", tags = "Tarjetas_Credito")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -47,6 +51,7 @@ public class TarjetaCreditoController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene una tarjeta de credito por su id", response = TarjetaCreditoDTO.class, tags = "Tarjetas_Credito")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(tarjetaCreditoService.findById(id), HttpStatus.OK);
@@ -56,6 +61,7 @@ public class TarjetaCreditoController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea una tarjeta de credito", response = HttpStatus.class, tags = "Tarjetas_Credito")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody TarjetaCreditoDTO tarjetaCreditoDTO, BindingResult bindingResult) {

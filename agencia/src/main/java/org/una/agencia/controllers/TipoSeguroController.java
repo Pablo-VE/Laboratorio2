@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import org.una.agencia.services.ITipoSeguroService;
 
 @RestController
 @RequestMapping("/tiposSeguro") 
+@Api(tags = {"Tipos_Seguros"})
 public class TipoSeguroController {
     
     @Autowired
@@ -36,6 +39,7 @@ public class TipoSeguroController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping("/") 
+    @ApiOperation(value = "Obtiene una lista de todos los tipos de seguro", response = TipoSeguroDTO.class, responseContainer = "List", tags = "Tipos_Seguros")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -46,6 +50,7 @@ public class TipoSeguroController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene un tipo de seguro por su identificador unico", response = TipoSeguroDTO.class, tags = "Tipos_Seguros")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(tipoSeguroService.findById(id), HttpStatus.OK);
@@ -55,6 +60,7 @@ public class TipoSeguroController {
     }
      
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea un tipo de seguro", response = HttpStatus.class, tags = "Tipos_Seguros")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody TipoSeguroDTO tipoSeguroDTO, BindingResult bindingResult) {

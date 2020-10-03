@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import org.una.agencia.services.IVehiculoService;
 
 @RestController
 @RequestMapping("/vehiculos") 
+@Api(tags = {"Vehiculos"})
 public class VehiculoController {
     
     @Autowired
@@ -36,6 +39,7 @@ public class VehiculoController {
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @GetMapping("/") 
+    @ApiOperation(value = "Obtiene una lista de todos los vehiculos", response = VehiculoDTO.class, responseContainer = "List", tags = "Vehiculos")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
@@ -46,6 +50,7 @@ public class VehiculoController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene un vehiculo por su identificador unico", response = VehiculoDTO.class, tags = "Vehiculos")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(vehiculoService.findById(id), HttpStatus.OK);
@@ -55,6 +60,7 @@ public class VehiculoController {
     }
     
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea un vehiculo", response = HttpStatus.class, tags = "Vehiculos")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody VehiculoDTO vehiculoDTO, BindingResult bindingResult) {
@@ -70,6 +76,7 @@ public class VehiculoController {
     }
     
     @GetMapping("/grupoAndEstado/{nomGrupo}/{estado}") 
+    @ApiOperation(value = "Obtiene una lista de vehiculos por grupo y estado", response = VehiculoDTO.class, responseContainer = "List", tags = "Vehiculos")
     public @ResponseBody
     ResponseEntity<?> findByNombreGrupoAndEstado(@PathVariable(value = "nomGrupo") String nomGrupo, @PathVariable(value = "estado") boolean estado) {
         try {

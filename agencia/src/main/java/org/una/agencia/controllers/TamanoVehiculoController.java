@@ -5,6 +5,8 @@
  */
 package org.una.agencia.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import org.una.agencia.services.ITamanoVehiculoService;
 
 @RestController
 @RequestMapping("/tamanosVehiculo") 
+@Api(tags = {"Tamanos_Vehiculos"})
 public class TamanoVehiculoController {
     
     @Autowired
@@ -36,6 +39,7 @@ public class TamanoVehiculoController {
 
     @GetMapping("/") 
     public @ResponseBody
+    @ApiOperation(value = "Obtiene una lista de todos los tamanos de vehiculos", response = TamanoVehiculoDTO.class, responseContainer = "List", tags = "Tamanos_Vehiculos")
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity(tamanoVehiculoService.findAll(), HttpStatus.OK);
@@ -45,6 +49,7 @@ public class TamanoVehiculoController {
     }
 
     @GetMapping("/{id}") 
+    @ApiOperation(value = "Obtiene una tamano de vehiculo por su id", response = TamanoVehiculoDTO.class, responseContainer = "List", tags = "Tamanos_Vehiculos")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
         try {
             return new ResponseEntity<>(tamanoVehiculoService.findById(id), HttpStatus.OK);
@@ -54,6 +59,7 @@ public class TamanoVehiculoController {
     }
      
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Crea un tamano de vehiculo", response = HttpStatus.class, tags = "Tamanos_Vehiculos")
     @PostMapping("/") 
     @ResponseBody
     public ResponseEntity<?> create(@Valid @RequestBody TamanoVehiculoDTO tamanoVehiculoDTO, BindingResult bindingResult) {
