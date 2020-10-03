@@ -50,6 +50,8 @@ public class Oficina implements Serializable{
     @OneToOne(mappedBy = "oficina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Direccion direccion;
     
+    @Column(length = 12)
+    private String telefono;
        
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "oficina") 
     private List<Vehiculo> vehiculos= new ArrayList<>();

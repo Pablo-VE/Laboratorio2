@@ -28,5 +28,6 @@ public class OficinaDTO {
     private java.util.Date fechaModificacion;
     private boolean estado;
     private CiudadDTO ciudad;
+    private String telefono;
     
 }
