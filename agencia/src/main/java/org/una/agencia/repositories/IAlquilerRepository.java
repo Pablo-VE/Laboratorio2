@@ -19,4 +19,7 @@ public interface IAlquilerRepository extends JpaRepository<Alquiler, Long>{
     @Query("SELECT a FROM Alquiler a LEFT JOIN a.tarjetaCredito t LEFT JOIN a.vehiculo v WHERE UPPER(t.nombreTitular) like  CONCAT('%', UPPER(:nombre), '%') AND UPPER(v.matricula) like  CONCAT('%', UPPER(:matricula), '%')")
     public List<Alquiler> findByTitularTarjetaAndMatriculaVehiculo(@Param("nombre") String nombre, @Param("matricula")String matricula);
     
+    @Query("SELECT a FROM Alquiler a LEFT JOIN a.tarjetaCredito t LEFT JOIN a.vehiculo v LEFT JOIN t.cliente c WHERE UPPER(c.cedula) like  CONCAT('%', UPPER(:cedula), '%') AND UPPER(v.matricula) like  CONCAT('%', UPPER(:matricula), '%')")
+    public List<Alquiler> findByCedulaClienteAndMatriculaVehiculo(@Param("cedula") String cedula, @Param("matricula")String matricula);
+    
 }
