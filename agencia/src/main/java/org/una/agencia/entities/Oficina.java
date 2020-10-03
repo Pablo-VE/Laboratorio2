@@ -84,5 +84,5 @@ public class Oficina implements Serializable{
     @OneToOne(mappedBy = "oficina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Ciudad ciudad;
 
-    
+  
 }

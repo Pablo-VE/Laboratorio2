@@ -42,7 +42,6 @@ import lombok.ToString;
 @ToString
 public class TarjetaCredito implements Serializable{
     
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     
@@ -54,8 +53,13 @@ public class TarjetaCredito implements Serializable{
     
     @Column(name = "fecha_vencimiento")
     @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
+    
+    @Column(name = "fecha_registro")
+    @Setter(AccessLevel.NONE)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaRegistro;
     
     @Column
     private boolean estado;
@@ -63,6 +67,7 @@ public class TarjetaCredito implements Serializable{
     @PrePersist
     public void prePersist() {
         estado=true;
+        fechaRegistro = new Date();
     }
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tarjetaCredito") 
