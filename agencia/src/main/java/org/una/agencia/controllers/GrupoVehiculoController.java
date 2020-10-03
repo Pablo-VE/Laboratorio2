@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.agencia.services.IGrupoVehiculoService;
@@ -20,12 +21,13 @@ import org.una.agencia.services.IGrupoVehiculoService;
  */
 
 @RestController
+@RequestMapping("/gruposVehiculo") 
 public class GrupoVehiculoController {
     
     @Autowired
     private IGrupoVehiculoService grupoVehiculoService;
 
-    @GetMapping() 
+    @GetMapping("/") 
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
