@@ -48,7 +48,7 @@ public class GrupoVehiculo implements Serializable{
     private List<Vehiculo> vehiculos= new ArrayList<>();
     
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lab2_tamanos_vehiculos_id", referencedColumnName = "id")
+    @JoinColumn(name = "tamano_vehiculo", referencedColumnName = "id")
     private TamanoVehiculo tamanoVehiculo;
     
     @Column(length = 15)

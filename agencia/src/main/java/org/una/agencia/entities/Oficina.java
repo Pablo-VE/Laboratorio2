@@ -53,7 +53,7 @@ public class Oficina implements Serializable{
     private String codigoPostal;
     
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lab2_oficinas_id", referencedColumnName = "id")
+    @JoinColumn(name = "direccion", referencedColumnName = "id")
     private Direccion direccion;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "oficina") 

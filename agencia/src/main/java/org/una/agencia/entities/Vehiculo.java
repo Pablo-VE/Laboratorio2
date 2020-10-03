@@ -92,11 +92,11 @@ public class Vehiculo implements Serializable{
     }
     
     @ManyToOne 
-    @JoinColumn(name="lab2_oficinas_id")
+    @JoinColumn(name="oficina")
     private Oficina oficina;
     
     @ManyToOne 
-    @JoinColumn(name="lab2_grupos_id")
+    @JoinColumn(name="grupo")
     private GrupoVehiculo grupo;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo") 

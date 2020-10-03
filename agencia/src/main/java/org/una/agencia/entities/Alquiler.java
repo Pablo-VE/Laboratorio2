@@ -48,20 +48,20 @@ public class Alquiler implements Serializable{
     private double precio;
     
     @ManyToOne 
-    @JoinColumn(name="lab2_vehiculos_id")
+    @JoinColumn(name="vehiculo")
     private Vehiculo vehiculo;
     
     @ManyToOne 
-    @JoinColumn(name="lab2_tipos_seguros_id")
+    @JoinColumn(name="tipo_seguro")
     private TipoSeguro tipoSeguro;
     
     
     @ManyToOne 
-    @JoinColumn(name="lab2_clientes_id")
+    @JoinColumn(name="cliente")
     private Cliente cliente;
 
     @ManyToOne 
-    @JoinColumn(name="lab2_tarjetas_credito_id")
+    @JoinColumn(name="tarjeta_credito")
     private TarjetaCredito tarjetaCredito;
  
     
