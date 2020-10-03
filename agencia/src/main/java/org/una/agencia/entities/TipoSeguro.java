@@ -16,7 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -36,28 +35,21 @@ import lombok.ToString;
  * @author Pablo-VE
  */
 @Entity
-@Table(name = "lab2_oficinas")
+@Table(name = "lab2_tipos_seguros")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Oficina implements Serializable{
+public class TipoSeguro implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(length = 20)
-    private String ciudad;
+    private String descripcion;
     
-    @Column(name="codigo_postal", length = 10)
-    private String codigoPostal;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lab2_oficinas_id", referencedColumnName = "id")
-    private Direccion direccion;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oficina") 
-    private List<Vehiculo> vehiculos= new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoSeguro") 
+    private List<Alquiler> alquileres= new ArrayList<>();
     
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -69,12 +61,11 @@ public class Oficina implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
-    @Column
-    private boolean estado;
+    @OneToOne(mappedBy = "direccion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Oficina oficina;
     
     @PrePersist
     public void prePersist() {
-        estado=true;
         fechaRegistro = new Date();
         fechaModificacion = new Date();
     }
@@ -83,6 +74,5 @@ public class Oficina implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
-
     
 }

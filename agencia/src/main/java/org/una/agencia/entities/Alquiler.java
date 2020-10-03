@@ -6,19 +6,14 @@
 package org.una.agencia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -36,28 +31,39 @@ import lombok.ToString;
  * @author Pablo-VE
  */
 @Entity
-@Table(name = "lab2_oficinas")
+@Table(name = "lab2_alquileres")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Oficina implements Serializable{
+public class Alquiler implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(length = 20)
-    private String ciudad;
+    @Column
+    private int duracion;
     
-    @Column(name="codigo_postal", length = 10)
-    private String codigoPostal;
+    @Column
+    private double precio;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lab2_oficinas_id", referencedColumnName = "id")
-    private Direccion direccion;
+    @ManyToOne 
+    @JoinColumn(name="lab2_vehiculos_id")
+    private Vehiculo vehiculo;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "oficina") 
-    private List<Vehiculo> vehiculos= new ArrayList<>();
+    @ManyToOne 
+    @JoinColumn(name="lab2_tipos_seguros_id")
+    private TipoSeguro tipoSeguro;
+    
+    
+    @ManyToOne 
+    @JoinColumn(name="lab2_clientes_id")
+    private Cliente cliente;
+
+    @ManyToOne 
+    @JoinColumn(name="lab2_tarjetas_credito_id")
+    private TarjetaCredito tarjetaCredito;
+ 
     
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,5 +90,6 @@ public class Oficina implements Serializable{
         fechaModificacion = new Date();
     }
 
+   
     
 }
