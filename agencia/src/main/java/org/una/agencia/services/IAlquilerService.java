@@ -20,4 +20,11 @@ public interface IAlquilerService {
     public Optional<AlquilerDTO> findById(Long id);
     
     public AlquilerDTO create(AlquilerDTO alqiler);
+    
+    public Optional<List<AlquilerDTO>> findByTitularTarjetaAndMatriculaVehiculo(String nombre, String matricula);
+    
+    public Optional<List<AlquilerDTO>> findByCedulaClienteAndMatriculaVehiculo(String cedula, String matricula);
+    
+    public Optional<List<AlquilerDTO>> findByPrecioAndTipoSeguro(double precio, String nombre);
+    
 }

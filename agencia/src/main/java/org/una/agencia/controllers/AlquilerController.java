@@ -69,4 +69,34 @@ public class AlquilerController {
         return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
+    
+    @GetMapping("/titularAndMatricula/{nombre}/{matricula}") 
+    public @ResponseBody
+    ResponseEntity<?> findByTitularTarjetaAndMatriculaVehiculo(@PathVariable(value = "nombre") String nombre, @PathVariable(value = "matricula") String matricula) {
+        try {
+            return new ResponseEntity(alquilerService.findByTitularTarjetaAndMatriculaVehiculo(nombre, matricula), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getClass(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/cedulaAndMatricula/{cedula}/{matricula}") 
+    public @ResponseBody
+    ResponseEntity<?> findByCedulaClienteAndMatriculaVehiculo(@PathVariable(value = "cedula") String cedula, @PathVariable(value = "matricula") String matricula) {
+        try {
+            return new ResponseEntity(alquilerService.findByCedulaClienteAndMatriculaVehiculo(cedula, matricula), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getClass(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+   @GetMapping("/precioAndNombre/{precio}/{nombre}") 
+    public @ResponseBody
+    ResponseEntity<?> findByPrecioAndTipoSeguro(@PathVariable(value = "precio") double precio, @PathVariable(value = "nombre") String nombre) {
+        try {
+            return new ResponseEntity(alquilerService.findByPrecioAndTipoSeguro(precio, nombre), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getClass(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
