@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.una.agencia.dto.AlquilerDTO;
+import org.una.agencia.entities.Alquiler;
 import org.una.agencia.repositories.IAlquilerRepository;
+import org.una.agencia.utils.MapperUtils;
 import org.una.agencia.utils.ServiceConvertionHelper;
 
 /**
@@ -31,6 +34,13 @@ public class AlquilerServiceImplementation implements IAlquilerService {
     @Override
     public Optional<AlquilerDTO> findById(Long id) {
         return ServiceConvertionHelper.oneToOptionalDto(alquilerRepository.findById(id), AlquilerDTO.class);
+    }
+    
+    @Override
+    public AlquilerDTO create(AlquilerDTO alquiler) {
+        Alquiler alqui = MapperUtils.EntityFromDto(alquiler, Alquiler.class);
+        alqui = alquilerRepository.save(alqui);
+        return MapperUtils.DtoFromEntity(alqui, AlquilerDTO.class);
     }
         
 }

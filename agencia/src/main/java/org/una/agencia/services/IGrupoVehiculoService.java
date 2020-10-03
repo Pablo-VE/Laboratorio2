@@ -19,4 +19,6 @@ public interface IGrupoVehiculoService {
 
     public Optional<GrupoVehiculoDTO> findById(Long id);
     
+    public GrupoVehiculoDTO create(GrupoVehiculoDTO grupoVehiculo);
+    
 }

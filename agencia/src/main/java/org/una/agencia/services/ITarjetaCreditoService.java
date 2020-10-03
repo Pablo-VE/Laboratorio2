@@ -19,4 +19,6 @@ public interface ITarjetaCreditoService {
 
     public Optional<TarjetaCreditoDTO> findById(Long id);
     
+    public TarjetaCreditoDTO create(TarjetaCreditoDTO tarjetaCredito);
+    
 }

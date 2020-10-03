@@ -19,4 +19,6 @@ public interface ITamanoVehiculoService {
 
     public Optional<TamanoVehiculoDTO> findById(Long id);
     
+    public TamanoVehiculoDTO create(TamanoVehiculoDTO tamanoVehiculo);
+    
 }

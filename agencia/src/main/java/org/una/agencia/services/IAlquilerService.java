@@ -18,4 +18,6 @@ public interface IAlquilerService {
     public Optional<List<AlquilerDTO>> findAll();
 
     public Optional<AlquilerDTO> findById(Long id);
+    
+    public AlquilerDTO create(AlquilerDTO alqiler);
 }

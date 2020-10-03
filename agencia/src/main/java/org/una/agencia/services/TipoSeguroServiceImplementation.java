@@ -10,7 +10,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.una.agencia.dto.TipoSeguroDTO;
+import org.una.agencia.entities.TipoSeguro;
 import org.una.agencia.repositories.ITipoSeguroRepository;
+import org.una.agencia.utils.MapperUtils;
 import org.una.agencia.utils.ServiceConvertionHelper;
 
 /**
@@ -31,6 +33,13 @@ public class TipoSeguroServiceImplementation implements ITipoSeguroService {
     @Override
     public Optional<TipoSeguroDTO> findById(Long id) {
         return ServiceConvertionHelper.oneToOptionalDto(tipoSeguroRepository.findById(id), TipoSeguroDTO.class);
+    }
+
+    @Override
+    public TipoSeguroDTO create(TipoSeguroDTO tipoSeguro) {
+        TipoSeguro seguro = MapperUtils.EntityFromDto(tipoSeguro, TipoSeguro.class);
+        seguro = tipoSeguroRepository.save(seguro);
+        return MapperUtils.DtoFromEntity(seguro, TipoSeguroDTO.class);
     }
     
 }

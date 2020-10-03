@@ -19,4 +19,6 @@ public interface ITipoSeguroService {
 
     public Optional<TipoSeguroDTO> findById(Long id);
     
+    public TipoSeguroDTO create(TipoSeguroDTO tipoSeguro);
+    
 }

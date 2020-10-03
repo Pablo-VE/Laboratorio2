@@ -18,4 +18,6 @@ public interface IDireccionService {
     public Optional<List<DireccionDTO>> findAll();
 
     public Optional<DireccionDTO> findById(Long id); 
+    
+    public DireccionDTO create(DireccionDTO direccion);
 }

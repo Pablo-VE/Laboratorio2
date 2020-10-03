@@ -10,7 +10,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.una.agencia.dto.TamanoVehiculoDTO;
+import org.una.agencia.entities.TamanoVehiculo;
 import org.una.agencia.repositories.ITamanoVehiculoRepository;
+import org.una.agencia.utils.MapperUtils;
 import org.una.agencia.utils.ServiceConvertionHelper;
 
 /**
@@ -31,6 +33,13 @@ public class TamanoVehiculoServiceImplementation implements ITamanoVehiculoServi
     @Override
     public Optional<TamanoVehiculoDTO> findById(Long id) {
         return ServiceConvertionHelper.oneToOptionalDto(tamanoVehiculoRepository.findById(id), TamanoVehiculoDTO.class);
+    }
+
+    @Override
+    public TamanoVehiculoDTO create(TamanoVehiculoDTO tamanoVehiculo) {
+        TamanoVehiculo tama = MapperUtils.EntityFromDto(tamanoVehiculo, TamanoVehiculo.class);
+        tama = tamanoVehiculoRepository.save(tama);
+        return MapperUtils.DtoFromEntity(tama, TamanoVehiculoDTO.class);
     }
     
 }

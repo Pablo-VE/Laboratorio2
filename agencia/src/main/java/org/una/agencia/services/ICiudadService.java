@@ -20,4 +20,6 @@ public interface ICiudadService {
 
     public Optional<CiudadDTO> findById(Long id);
     
+   public CiudadDTO create(CiudadDTO ciudad);
+    
 }

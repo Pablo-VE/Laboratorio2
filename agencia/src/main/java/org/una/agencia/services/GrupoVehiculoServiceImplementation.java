@@ -10,7 +10,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.una.agencia.dto.GrupoVehiculoDTO;
+import org.una.agencia.entities.GrupoVehiculo;
 import org.una.agencia.repositories.IGrupoVehiculoRepository;
+import org.una.agencia.utils.MapperUtils;
 import org.una.agencia.utils.ServiceConvertionHelper;
 
 /**
@@ -32,4 +34,11 @@ public class GrupoVehiculoServiceImplementation implements IGrupoVehiculoService
     public Optional<GrupoVehiculoDTO> findById(Long id) {
         return ServiceConvertionHelper.oneToOptionalDto(grupoVehiculoRepository.findById(id), GrupoVehiculoDTO.class);
     }  
+
+    @Override
+    public GrupoVehiculoDTO create(GrupoVehiculoDTO grupoVehiculo) {
+        GrupoVehiculo grupo = MapperUtils.EntityFromDto(grupoVehiculo, GrupoVehiculo.class);
+        grupo = grupoVehiculoRepository.save(grupo);
+        return MapperUtils.DtoFromEntity(grupo, GrupoVehiculoDTO.class);
+    }
 }

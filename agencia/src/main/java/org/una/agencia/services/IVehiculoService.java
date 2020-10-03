@@ -20,4 +20,8 @@ public interface IVehiculoService {
 
     public Optional<VehiculoDTO> findById(Long id);
     
+    public VehiculoDTO create(VehiculoDTO vehiculo);
+    
+    public Optional<List<VehiculoDTO>> findByNombreGrupoAndEstado(String nombre, boolean estado);
+    
 }

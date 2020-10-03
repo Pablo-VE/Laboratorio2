@@ -19,5 +19,5 @@ public interface IOficinaService {
 
     public Optional<OficinaDTO> findById(Long id);
     
-    
+    public OficinaDTO create(OficinaDTO oficina);
 }

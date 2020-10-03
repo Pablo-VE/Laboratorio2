@@ -6,12 +6,12 @@
 package org.una.agencia.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.una.agencia.entities.Vehiculo;
+import org.una.agencia.entities.GrupoVehiculo;
 
 /**
  *
  * @author Jeffry
  */
-public interface IGrupoVehiculoRepository extends JpaRepository<Vehiculo, Long> {
+public interface IGrupoVehiculoRepository extends JpaRepository<GrupoVehiculo, Long> {
     
 }
