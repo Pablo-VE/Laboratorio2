@@ -28,4 +28,5 @@ public class ClienteDTO {
     private java.util.Date fechaRegistro;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaModificacion;
+    private boolean estado;
 }

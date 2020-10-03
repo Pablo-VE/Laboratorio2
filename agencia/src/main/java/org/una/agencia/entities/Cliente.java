@@ -78,9 +78,10 @@ public class Cliente implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
+
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente") 
-    private List<Alquiler> alquileres= new ArrayList<>();
+    private List<TarjetaCredito> tarjetasDeCredito= new ArrayList<>();
     
    
 }

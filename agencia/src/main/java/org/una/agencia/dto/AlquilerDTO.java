@@ -26,7 +26,6 @@ public class AlquilerDTO {
     private double precio;
     private VehiculoDTO vehiculo;
     private TipoSeguroDTO tipoSeguro;
-    private ClienteDTO cliente;
     private TarjetaCreditoDTO tarjetaCredito;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaRegistro;

@@ -6,7 +6,9 @@
 package org.una.agencia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -32,28 +36,22 @@ import lombok.ToString;
  * @author Pablo-VE
  */
 @Entity
-@Table(name = "lab2_tamanos_vehiculos")
+@Table(name = "lab2_ciudades")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TamanoVehiculo implements Serializable{
+public class Ciudad implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+            
+    @Column(length = 100)
+    private String nombre;
     
-    @Column
-    private double altura;
-    
-    @Column
-    private double anchura;
-    
-    @Column
-    private double longitud;
-    
-    @OneToOne(mappedBy = "tamanoVehiculo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private GrupoVehiculo grupoVehiculo;
-    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "oficina", referencedColumnName = "id")
+    private Oficina oficina;
     
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -65,12 +63,12 @@ public class TamanoVehiculo implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
-    @Column 
+    @Column
     private boolean estado;
     
     @PrePersist
     public void prePersist() {
-        estado = true;
+        estado=true;
         fechaRegistro = new Date();
         fechaModificacion = new Date();
     }
@@ -79,5 +77,4 @@ public class TamanoVehiculo implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
-    
 }

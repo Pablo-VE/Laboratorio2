@@ -55,10 +55,7 @@ public class Alquiler implements Serializable{
     @JoinColumn(name="tipo_seguro")
     private TipoSeguro tipoSeguro;
     
-    
-    @ManyToOne 
-    @JoinColumn(name="cliente")
-    private Cliente cliente;
+
 
     @ManyToOne 
     @JoinColumn(name="tarjeta_credito")

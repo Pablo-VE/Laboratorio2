@@ -21,13 +21,12 @@ import lombok.ToString;
 @ToString
 public class OficinaDTO {
     private Long id;
-    private String ciudad;
-    private String codigoPostal;
     private DireccionDTO direccion;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaRegistro;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaModificacion;
     private boolean estado;
+    private CiudadDTO ciudad;
     
 }

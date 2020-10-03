@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -45,17 +46,11 @@ public class Oficina implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(length = 20)
-    private String ciudad;
-    
-    @Column(name="codigo_postal", length = 10)
-    private String codigoPostal;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "direccion", referencedColumnName = "id")
+
+    @OneToOne(mappedBy = "oficina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Direccion direccion;
     
+       
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "oficina") 
     private List<Vehiculo> vehiculos= new ArrayList<>();
     
@@ -83,6 +78,9 @@ public class Oficina implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
+    
+    @OneToOne(mappedBy = "oficina", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Ciudad ciudad;
 
     
 }

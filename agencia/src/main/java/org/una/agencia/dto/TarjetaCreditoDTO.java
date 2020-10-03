@@ -26,5 +26,6 @@ public class TarjetaCreditoDTO {
     private boolean estado;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaVencimiento;
+    private ClienteDTO cliente;
     
 }

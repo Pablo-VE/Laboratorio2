@@ -5,6 +5,7 @@
  */
 package org.una.agencia.dto;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,9 @@ public class TamanoVehiculoDTO {
     private double anchura;
     private double longitud;
     private GrupoVehiculoDTO grupoVehiculo;
+    @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private java.util.Date fechaRegistro;
+    @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private java.util.Date fechaModificacion;
+    private boolean estado;
 }

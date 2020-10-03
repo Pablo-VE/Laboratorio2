@@ -29,5 +29,6 @@ public class DireccionDTO {
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaModificacion;
     private OficinaDTO oficina;
+    private boolean estado;
     
 }

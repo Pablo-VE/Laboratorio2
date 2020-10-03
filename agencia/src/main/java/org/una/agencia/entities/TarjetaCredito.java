@@ -15,6 +15,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -63,5 +66,13 @@ public class TarjetaCredito implements Serializable{
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tarjetaCredito") 
     private List<Alquiler> alquileres= new ArrayList<>();
+    
+    
+    @ManyToOne 
+    @JoinColumn(name="cliente")
+    @MapsId
+    private Cliente cliente;
+    
+    
     
 }

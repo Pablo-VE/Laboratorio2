@@ -46,6 +46,9 @@ public class TipoSeguro implements Serializable{
     private Long id;
     
     @Column(length = 20)
+    private String nombre;
+    
+    @Column(length = 250)
     private String descripcion;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoSeguro") 
@@ -63,6 +66,9 @@ public class TipoSeguro implements Serializable{
     
     @OneToOne(mappedBy = "direccion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Oficina oficina;
+    
+    @Column
+    private boolean estado;
     
     @PrePersist
     public void prePersist() {
