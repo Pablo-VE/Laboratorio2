@@ -6,12 +6,12 @@
 package org.una.agencia.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.una.agencia.entities.Oficina;
+import org.una.agencia.entities.Alquiler;
 
 /**
  *
- * @author Pablo-VE
+ * @author Jeffry
  */
-public interface IOficinaRepositorie extends JpaRepository<Oficina, Long>  {
+public interface IAlquilerRepository extends JpaRepository<Alquiler, Long>{
     
 }
