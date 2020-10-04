@@ -51,10 +51,8 @@ public class TarjetaCredito implements Serializable{
     @Column(name = "numero_tarjeta", length = 15)
     private String numeroTarjeta;
     
-    @Column(name = "fecha_vencimiento")
-    @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaVencimiento;
+    @Column(name = "fecha_vencimiento", length = 15)
+    private String fechaVencimiento;
     
     @Column(name = "fecha_registro")
     @Setter(AccessLevel.NONE)
@@ -74,6 +72,7 @@ public class TarjetaCredito implements Serializable{
     private List<Alquiler> alquileres= new ArrayList<>();
     
     
+
     @ManyToOne 
     @JoinColumn(name="cliente")
     @MapsId

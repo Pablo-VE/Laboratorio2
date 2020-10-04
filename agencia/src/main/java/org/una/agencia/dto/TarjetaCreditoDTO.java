@@ -24,8 +24,7 @@ public class TarjetaCreditoDTO {
     private String nombreTitular;
     private String numeroTarjeta;
     private boolean estado;
-    @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-    private java.util.Date fechaVencimiento;
+    private String fechaVencimiento;
     private ClienteDTO cliente;
     @JsonbDateFormat(value = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private java.util.Date fechaRegistro;

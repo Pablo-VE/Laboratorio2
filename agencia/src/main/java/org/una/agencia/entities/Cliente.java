@@ -67,7 +67,7 @@ public class Cliente implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
-    @Column 
+    @Column(name = "estado")
     private boolean estado;
     
     @PrePersist
